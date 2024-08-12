@@ -132,7 +132,7 @@ fun quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int
                 .size(50.dp)
                 .rotate(90f)
                 .fillMaxWidth()
-            )
+            )//testing
     }
 
 }
