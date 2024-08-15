@@ -1,7 +1,6 @@
 package com.example.mtglifecounter
 
 import android.os.Bundle
-import android.util.MutableInt
 import android.util.Size
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -39,19 +39,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         setContent {
             MtgLifeCounterTheme {
                 Column( modifier = Modifier.fillMaxSize()) {
                     Row ( modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f)) {
-                        quadrant(
+                        Quadrant(
                             name = "top_left",
                             sizeW = 0.5f,
                             color = Color.Green,
                             rotation = 90f,
                             addtion = 1
                         )
-                        quadrant(
+                        Quadrant(
                             name = "top_right",
                             sizeW = 1f,
                             color = Color.Red,
@@ -60,14 +59,14 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     Row ( modifier = Modifier.fillMaxWidth()) {
-                        quadrant(
+                        Quadrant(
                             name = "bot_left",
                             sizeW = 0.5f,
                             color = Color.Blue,
                             rotation = 90f,
                             addtion = 1
                         )
-                        quadrant(
+                        Quadrant(
                             name = "bot_right",
                             sizeW = 1f,
                             color = Color.Magenta,
@@ -79,12 +78,11 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 }
 
 @Composable
-fun quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int) {
-    var number = remember {mutableStateOf(40)}
+fun Quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int) {
+    val number = remember { mutableIntStateOf(40) }
     Column(
 
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -99,6 +97,7 @@ fun quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int
                     )
             }
     )
+
     {
         Image(painter = painterResource(id = R.drawable.arrow_right_512),
             contentDescription = "YEYEYE",
@@ -106,14 +105,14 @@ fun quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int
 
             modifier = Modifier
                 .clickable {
-                    number.value -= addtion
+                    number.intValue -= addtion
                 }
                 .size(50.dp)
                 .rotate(360f - 90f)
                 .fillMaxWidth()
         )
 
-        Text("${number.value}",
+        Text("${number.intValue}",
             fontSize = 50.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier
@@ -127,7 +126,7 @@ fun quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int
 
             modifier = Modifier
                 .clickable {
-                    number.value += addtion
+                    number.intValue += addtion
                 }
                 .size(50.dp)
                 .rotate(90f)
