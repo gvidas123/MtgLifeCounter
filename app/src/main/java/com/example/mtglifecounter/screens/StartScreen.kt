@@ -2,6 +2,7 @@ package com.example.mtglifecounter.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
@@ -19,9 +20,8 @@ import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
 fun StartScreen(
     onButtonClick: () -> Unit = {}
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxHeight()) {
         Button(
-            modifier = Modifier.weight(1f),
             onClick = onButtonClick
         )
         {

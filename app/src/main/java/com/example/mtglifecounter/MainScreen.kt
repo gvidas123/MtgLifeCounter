@@ -31,7 +31,9 @@ fun MtgLifeCounterApp(
         )
         {
             composable(route = Screens.Start.name) {
-                StartScreen()
+                StartScreen(
+                    onButtonClick = { navController.navigate(Screens.Commander.name) }
+                )
 
             }
             composable(route = Screens.Commander.name) {
