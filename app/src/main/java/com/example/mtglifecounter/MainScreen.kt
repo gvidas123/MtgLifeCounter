@@ -2,7 +2,10 @@ package com.example.mtglifecounter
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -11,18 +14,49 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mtglifecounter.screens.CommanderScreen
 import com.example.mtglifecounter.screens.StartScreen
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 enum class Screens(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     Commander(title = R.string.commander)
 }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun topAppBar(
+    currentScreen: Screens
 
+) {
+    TopAppBar(
+        title = {Text( stringResource(currentScreen.title))},
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.primary,
+        )
+    )
+
+
+
+}
 
 @Composable
 fun MtgLifeCounterApp(
     navController: NavHostController = rememberNavController()
 ) {
-    Scaffold(){
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentScreen = Screens.valueOf(
+        backStackEntry?.destination?.route ?: Screens.Start.name
+    )
+    Scaffold(
+        topBar = {
+            topAppBar(
+                currentScreen = currentScreen
+            )
+        }
+    ){
         innerPadding ->
         NavHost(
             navController = navController,
