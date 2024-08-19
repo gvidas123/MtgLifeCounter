@@ -24,23 +24,8 @@ enum class Screens(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     Commander(title = R.string.commander)
 }
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun topAppBar(
-    currentScreen: Screens
-
-) {
-    TopAppBar(
-        title = {Text( stringResource(currentScreen.title))},
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            titleContentColor = MaterialTheme.colorScheme.primary,
-        )
-    )
 
 
-
-}
 
 @Composable
 fun MtgLifeCounterApp(
@@ -51,11 +36,7 @@ fun MtgLifeCounterApp(
         backStackEntry?.destination?.route ?: Screens.Start.name
     )
     Scaffold(
-        topBar = {
-            topAppBar(
-                currentScreen = currentScreen
-            )
-        }
+
     ){
         innerPadding ->
         NavHost(
