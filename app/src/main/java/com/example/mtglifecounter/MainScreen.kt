@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 
+
 enum class Screens(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     Commander(title = R.string.commander)

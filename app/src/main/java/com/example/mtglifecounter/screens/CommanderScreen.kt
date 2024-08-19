@@ -21,9 +21,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mtglifecounter.R
+import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
+import com.example.mtglifecounter.ui.theme.PinkPastel
+import com.example.mtglifecounter.ui.theme.CyanPastel
+import com.example.mtglifecounter.ui.theme.GreenPastel
+import com.example.mtglifecounter.ui.theme.PurplePastel
+import com.example.mtglifecounter.ui.theme.YellowPastel
 
 @Composable
 fun CommanderScreen() {
@@ -36,14 +43,14 @@ fun CommanderScreen() {
             Quadrant(
                 name = "top_left",
                 sizeW = 0.5f,
-                color = Color.Green,
+                color = PinkPastel,
                 rotation = 90f,
                 addtion = 1
             )
             Quadrant(
                 name = "top_right",
                 sizeW = 1f,
-                color = Color.Red,
+                color = CyanPastel,
                 rotation = 270f,
                 addtion = -1
             )
@@ -52,14 +59,14 @@ fun CommanderScreen() {
             Quadrant(
                 name = "bot_left",
                 sizeW = 0.5f,
-                color = Color.Blue,
+                color = PurplePastel,
                 rotation = 90f,
                 addtion = 1
             )
             Quadrant(
                 name = "bot_right",
                 sizeW = 1f,
-                color = Color.Magenta,
+                color = GreenPastel,
                 rotation = 270f,
                 addtion = -1
             )
@@ -118,6 +125,13 @@ fun Quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int
                 .rotate(90f)
                 .fillMaxWidth()
         )//testing
+    }
+}
+@Preview
+@Composable
+fun CommanderScreenPreview(){
+    MtgLifeCounterTheme{
+        CommanderScreen()
     }
 
 }
