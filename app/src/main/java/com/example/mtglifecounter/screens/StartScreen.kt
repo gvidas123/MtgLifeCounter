@@ -19,7 +19,7 @@ import com.example.mtglifecounter.ui.theme.Greenish
 import com.example.mtglifecounter.ui.theme.Orangish
 import com.example.mtglifecounter.ui.theme.Whitish
 import com.example.mtglifecounter.ui.theme.LightGreenish
-
+import java.io.File
 
 
 @Composable
@@ -60,7 +60,8 @@ fun StartScreen(
                 )
             )
             {
-                Text(text = "1 v 1 ",
+                Text(
+                    text = "yes",
                     color = Color.White
                 )
             }

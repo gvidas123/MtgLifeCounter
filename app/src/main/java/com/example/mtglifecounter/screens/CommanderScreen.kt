@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -71,6 +73,13 @@ fun CommanderScreen() {
                 addtion = -1
             )
         }
+        Button(
+            onClick = {},
+            modifier = Modifier
+        ) {
+
+            
+        }
     }
 }
 @Composable
@@ -100,13 +109,14 @@ fun Quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int
                 .clickable {
                     number.intValue -= addtion
                 }
-                .size(50.dp)
+                .size(70.dp)
                 .rotate(360f - 90f)
                 .fillMaxWidth()
         )
 
         Text("${number.intValue}",
-            fontSize = 50.sp,
+            fontSize = 60.sp,
+            color = Color.Black,
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
@@ -121,7 +131,7 @@ fun Quadrant(name: String,sizeW: Float,color: Color,rotation: Float,addtion: Int
                 .clickable {
                     number.intValue += addtion
                 }
-                .size(50.dp)
+                .size(70.dp)
                 .rotate(90f)
                 .fillMaxWidth()
         )//testing
