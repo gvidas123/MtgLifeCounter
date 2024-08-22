@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -37,6 +38,17 @@ import com.example.mtglifecounter.ui.theme.YellowPastel
 @Composable
 fun CommanderScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
+        Button(
+            onClick = {},
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(50.dp)
+                .align(Alignment.CenterHorizontally),
+            shape = RectangleShape,
+
+            ) {
+            Text(text = "Game Started")
+        }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,29 +69,43 @@ fun CommanderScreen() {
                 addtion = -1
             )
         }
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Quadrant(
-                name = "bot_left",
-                sizeW = 0.5f,
-                color = PurplePastel,
-                rotation = 90f,
-                addtion = 1
-            )
-            Quadrant(
-                name = "bot_right",
-                sizeW = 1f,
-                color = GreenPastel,
-                rotation = 270f,
-                addtion = -1
-            )
-        }
-        Button(
-            onClick = {},
-            modifier = Modifier
+        Column(
+            modifier = Modifier.fillMaxHeight()
         ) {
 
-            
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.9f)
+                ) {
+                Quadrant(
+                    name = "bot_left",
+                    sizeW = 0.5f,
+                    color = PurplePastel,
+                    rotation = 90f,
+                    addtion = 1
+                )
+                Quadrant(
+                    name = "bot_right",
+                    sizeW = 1f,
+                    color = GreenPastel,
+                    rotation = 270f,
+                    addtion = -1
+                )
+            }
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .align(Alignment.CenterHorizontally),
+                shape = RectangleShape,
+
+            ) {
+                Text(text = "Game Ended")
+            }
         }
+
+
     }
 }
 @Composable
