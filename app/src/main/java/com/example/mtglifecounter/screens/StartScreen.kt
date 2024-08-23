@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
 import com.example.mtglifecounter.ui.theme.Greenish
@@ -42,7 +43,8 @@ fun StartScreen(
                 onClick = onButtonClick,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Greenish
-                )
+                ),
+
 
             )
             {
@@ -57,7 +59,7 @@ fun StartScreen(
                 onClick = onButtonClick,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Greenish
-                )
+                ),
             )
             {
                 Text(
