@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -35,7 +36,7 @@ fun StartScreen(
 
 
             ) {
-            Button(
+            OutlinedButton(
 
                 modifier = Modifier
                     .fillMaxHeight(0.5f)
@@ -44,6 +45,7 @@ fun StartScreen(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Greenish
                 ),
+                
 
 
             )
@@ -52,7 +54,7 @@ fun StartScreen(
                     color = Color.White
                 )
             }
-            Button(
+            OutlinedButton(
                 modifier = Modifier
                     .fillMaxHeight()
                     .fillMaxWidth(),
@@ -60,6 +62,7 @@ fun StartScreen(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Greenish
                 ),
+
             )
             {
                 Text(

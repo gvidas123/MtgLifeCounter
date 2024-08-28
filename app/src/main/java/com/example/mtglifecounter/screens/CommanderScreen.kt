@@ -109,7 +109,6 @@ fun Quadrant(sizeW: Float,color: Color,rotation: Float,addition: Int,player : St
             {
                 drawRect(
                     color = color,
-
                     )
             }
     ) {
@@ -158,7 +157,7 @@ fun Quadrant(sizeW: Float,color: Color,rotation: Float,addition: Int,player : St
                         .size(70.dp)
                         .rotate(90f)
                         .fillMaxWidth()
-                )//testing
+                )
             }
 
         }

@@ -56,8 +56,8 @@ fun PlayerSelectionScreen() {
                     .fillMaxWidth()
                     .fillMaxHeight(0.48f)
             ) {
-                Quadrant(player = "player 1",0.5f)
 
+                Quadrant(player = "player 1",0.5f)
                 Quadrant(player = "player 3",1f)
 
             }
@@ -72,7 +72,8 @@ fun PlayerSelectionScreen() {
                 Quadrant(player = "player 4",1f)
 
             }
-            Button(onClick = { /*TODO*/ },
+            Button(
+                onClick = { /*TODO*/ },
                 shape = RectangleShape,
                 modifier = Modifier.fillMaxWidth()
 
@@ -98,21 +99,17 @@ fun Quadrant(player: String,fraction: Float) {
                 onDismissRequest = { expanded = false },
                 modifier = Modifier.padding(20.dp)
             ) {
-
                 numbers.forEach { item ->
                     DropdownMenuItem(
                         text = { Text(text = item) },
                         onClick = {
                             selectedText = item
                             expanded = false
-
                         })
                 }
 
             }
         }
-
-
         Text(
             text = player,
             modifier = Modifier
