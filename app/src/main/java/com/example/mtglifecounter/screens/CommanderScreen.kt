@@ -52,14 +52,16 @@ fun CommanderScreen(
                 color = PinkPastel,
                 rotation = 90f,
                 addition = 1,
-                player = viewModel.player1
+                player = viewModel.player1,
+                viewModel = viewModel
             )
             Quadrant(
                 sizeW = 1f,
                 color = CyanPastel,
                 rotation = 270f,
                 addition = -1,
-                player = viewModel.player3
+                player = viewModel.player3,
+                viewModel = viewModel
             )
         }
         Column(
@@ -75,14 +77,16 @@ fun CommanderScreen(
                     color = PurplePastel,
                     rotation = 90f,
                     addition = 1,
-                    player = viewModel.player2
+                    player = viewModel.player2,
+                    viewModel = viewModel
                 )
                 Quadrant(
                     sizeW = 1f,
                     color = GreenPastel,
                     rotation = 270f,
                     addition = -1,
-                    player = viewModel.player4
+                    player = viewModel.player4,
+                    viewModel = viewModel
                 )
             }
             Button(
@@ -102,7 +106,7 @@ fun CommanderScreen(
     }
 }
 @Composable
-fun Quadrant(sizeW: Float,color: Color,rotation: Float,addition: Int,player : String) {
+fun Quadrant(sizeW: Float,color: Color,rotation: Float,addition: Int,player : String,viewModel: CounterViewModel) {
     val number = remember { mutableIntStateOf(40) }
 
     Column(

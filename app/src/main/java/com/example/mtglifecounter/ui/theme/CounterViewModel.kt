@@ -16,4 +16,8 @@ class CounterViewModel {
     var player4: String = "player4"
     var startTime: Date = currentTime
     var startTimeMilis: Long = 20
+    var player1LIfe: Int = 40
+    var player2LIfe: Int = 40
+    var player3LIfe: Int = 40
+    var player4LIfe: Int = 40
 }
