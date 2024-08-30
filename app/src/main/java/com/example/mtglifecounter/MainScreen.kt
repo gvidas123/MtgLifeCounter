@@ -31,7 +31,6 @@ fun MtgLifeCounterApp(
     counterViewModel: CounterViewModel,
     navController: NavHostController = rememberNavController()
 ) {
-    val gameUiState by counterViewModel.uiState.collectAsState()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = Screens.valueOf(
         backStackEntry?.destination?.route ?: Screens.Start.name
@@ -62,7 +61,7 @@ fun MtgLifeCounterApp(
             }
             composable(route = Screens.Commander.name) {
                 CommanderScreen(
-                    player1 = counterViewModel.player1,
+                    viewModel = counterViewModel,
                     onButtonClick = { navController.popBackStack(Screens.Start.name, inclusive = false) }
                 )
             }

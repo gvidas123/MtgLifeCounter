@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mtglifecounter.R
 import com.example.mtglifecounter.ui.theme.CounterViewModel
 import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
@@ -38,7 +39,7 @@ import com.example.mtglifecounter.ui.theme.PurplePastel
 
 @Composable
 fun CommanderScreen(
-    player1 : String,
+   viewModel: CounterViewModel,
     onButtonClick: () -> Unit = {}
 ) {
     KeepScreenOn()
@@ -54,14 +55,14 @@ fun CommanderScreen(
                 color = PinkPastel,
                 rotation = 90f,
                 addition = 1,
-                player = player1
+                player = viewModel.player1
             )
             Quadrant(
                 sizeW = 1f,
                 color = CyanPastel,
                 rotation = 270f,
                 addition = -1,
-                player = "3"
+                player = viewModel.player3
             )
         }
         Column(
@@ -77,14 +78,14 @@ fun CommanderScreen(
                     color = PurplePastel,
                     rotation = 90f,
                     addition = 1,
-                    player = "2"
+                    player = viewModel.player2
                 )
                 Quadrant(
                     sizeW = 1f,
                     color = GreenPastel,
                     rotation = 270f,
                     addition = -1,
-                    player = "4"
+                    player = viewModel.player4
                 )
             }
             Button(
@@ -170,16 +171,6 @@ fun Quadrant(sizeW: Float,color: Color,rotation: Float,addition: Int,player : St
 
         }
     }
-}
-@Preview
-@Composable
-fun CommanderScreenPreview(){
-    MtgLifeCounterTheme{
-        CommanderScreen(
-            "yes"
-        )
-    }
-
 }
 
 @Composable

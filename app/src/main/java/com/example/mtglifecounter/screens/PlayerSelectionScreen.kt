@@ -67,9 +67,9 @@ fun PlayerSelectionScreen(
                     .fillMaxHeight(0.48f)
             ) {
 
-                Quadrant(player = "player 2",0.48f,viewModel,1)
+                Quadrant(player = "player 1",0.48f,viewModel,1)
                 Box(modifier = Modifier.padding(10.dp)){}
-                Quadrant(player = "player 3",0.96f,viewModel,2)
+                Quadrant(player = "player 3",0.96f,viewModel,3)
 
             }
             Row(
@@ -79,7 +79,7 @@ fun PlayerSelectionScreen(
                     .fillMaxWidth()
                     .fillMaxHeight(0.92f)
             ) {
-                Quadrant(player = "player 2",0.48f,viewModel,3)
+                Quadrant(player = "player 2",0.48f,viewModel,2)
                 Box(modifier = Modifier.padding(10.dp)){}
                 Quadrant(player = "player 4",0.96f,viewModel,4)
 
