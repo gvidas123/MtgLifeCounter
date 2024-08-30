@@ -29,7 +29,9 @@ fun StartScreen(
     onButtonClick: () -> Unit = {}
 ) {
     Box(
-        modifier = Modifier.fillMaxSize().background(color = LightGreenish)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = LightGreenish)
     ) {
         Column(
             modifier = Modifier,

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -20,20 +21,27 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mtglifecounter.R
+import com.example.mtglifecounter.ui.theme.CounterViewModel
 import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
 import com.example.mtglifecounter.ui.theme.PinkPastel
 import com.example.mtglifecounter.ui.theme.CyanPastel
 import com.example.mtglifecounter.ui.theme.GreenPastel
 import com.example.mtglifecounter.ui.theme.PurplePastel
 
+
 @Composable
-fun CommanderScreen() {
+fun CommanderScreen(
+    player1 : String,
+    onButtonClick: () -> Unit = {}
+) {
+    KeepScreenOn()
     Column(modifier = Modifier.fillMaxSize()) {
 
         Row(
@@ -46,7 +54,7 @@ fun CommanderScreen() {
                 color = PinkPastel,
                 rotation = 90f,
                 addition = 1,
-                player = "1"
+                player = player1
             )
             Quadrant(
                 sizeW = 1f,
@@ -109,10 +117,10 @@ fun Quadrant(sizeW: Float,color: Color,rotation: Float,addition: Int,player : St
             {
                 drawRect(
                     color = color,
-                    )
+                )
             }
     ) {
-        Text(text = "player $player")
+        Text(text = player)
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
@@ -167,7 +175,20 @@ fun Quadrant(sizeW: Float,color: Color,rotation: Float,addition: Int,player : St
 @Composable
 fun CommanderScreenPreview(){
     MtgLifeCounterTheme{
-        CommanderScreen()
+        CommanderScreen(
+            "yes"
+        )
     }
 
+}
+
+@Composable
+fun KeepScreenOn() {
+    val currentView = LocalView.current
+    DisposableEffect(Unit) {
+        currentView.keepScreenOn = true
+        onDispose {
+            currentView.keepScreenOn = false
+        }
+    }
 }

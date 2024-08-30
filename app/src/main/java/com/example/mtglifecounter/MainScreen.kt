@@ -3,6 +3,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -12,7 +13,9 @@ import com.example.mtglifecounter.screens.CommanderScreen
 import com.example.mtglifecounter.screens.StartScreen
 import com.example.mtglifecounter.screens.PlayerSelectionScreen
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.mtglifecounter.ui.theme.CounterViewModel
 
 
 enum class Screens(@StringRes title: Int) {
@@ -25,8 +28,10 @@ enum class Screens(@StringRes title: Int) {
 
 @Composable
 fun MtgLifeCounterApp(
+    counterViewModel: CounterViewModel,
     navController: NavHostController = rememberNavController()
 ) {
+    val gameUiState by counterViewModel.uiState.collectAsState()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = Screens.valueOf(
         backStackEntry?.destination?.route ?: Screens.Start.name
@@ -43,15 +48,23 @@ fun MtgLifeCounterApp(
         {
             composable(route = Screens.Start.name) {
                 StartScreen(
-                    onButtonClick = { navController.navigate(Screens.Selection.name) }
+                    onButtonClick = { navController.navigate(Screens.Selection.name)
+
+                    }
                 )
 
             }
-            composable(route = Screens.Commander.name) {
-                CommanderScreen()
-            }
             composable(route = Screens.Selection.name) {
-                PlayerSelectionScreen()
+                PlayerSelectionScreen(
+                    viewModel = counterViewModel,
+                    onButtonClick = { navController.navigate(Screens.Commander.name)}
+                )
+            }
+            composable(route = Screens.Commander.name) {
+                CommanderScreen(
+                    player1 = counterViewModel.player1,
+                    onButtonClick = { navController.popBackStack(Screens.Start.name, inclusive = false) }
+                )
             }
         }
     }
