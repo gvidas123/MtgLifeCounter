@@ -24,18 +24,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mtglifecounter.R
 import com.example.mtglifecounter.ui.theme.CounterViewModel
-import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
-import com.example.mtglifecounter.ui.theme.PinkPastel
 import com.example.mtglifecounter.ui.theme.CyanPastel
 import com.example.mtglifecounter.ui.theme.GreenPastel
+import com.example.mtglifecounter.ui.theme.PinkPastel
 import com.example.mtglifecounter.ui.theme.PurplePastel
-
 
 @Composable
 fun CommanderScreen(
@@ -43,6 +39,7 @@ fun CommanderScreen(
     onButtonClick: () -> Unit = {}
 ) {
     KeepScreenOn()
+
     Column(modifier = Modifier.fillMaxSize()) {
 
         Row(
@@ -89,7 +86,7 @@ fun CommanderScreen(
                 )
             }
             Button(
-                onClick = {},
+                onClick = { onButtonClick() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()

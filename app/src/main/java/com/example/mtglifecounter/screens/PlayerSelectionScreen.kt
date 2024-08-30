@@ -14,33 +14,24 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
 import com.example.mtglifecounter.ui.theme.YellowPastel
-import java.io.InputStreamReader
 import com.example.mtglifecounter.ui.theme.CounterViewModel
+import java.util.Calendar
 
 
 @Composable
@@ -85,7 +76,11 @@ fun PlayerSelectionScreen(
 
             }
             Button(
-                onClick = { onButtonClick() },
+                onClick = {
+                    val currentTime = Calendar.getInstance().time
+                    viewModel.startTime = currentTime
+                    viewModel.startTimeMilis = System.currentTimeMillis()
+                    onButtonClick()},
                 shape = RectangleShape,
                 modifier = Modifier.fillMaxWidth()
 
@@ -121,7 +116,7 @@ fun Quadrant(player: String,fraction: Float, viewModel: CounterViewModel,number:
                     DropdownMenuItem(
                         text = { Text(text = item) },
                         onClick = {
-                            when(number) { // checks which quadrant it is to assign the correct viewmodel value the value of the choice
+                            when(number) { // checks which quadrant it is to assign to the correct value
                                 1 -> viewModel.player1 = item
                                 2 -> viewModel.player2 = item
                                 3 -> viewModel.player3 = item

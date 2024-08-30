@@ -3,41 +3,32 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mtglifecounter.screens.CommanderScreen
+import com.example.mtglifecounter.screens.EndScreen
 import com.example.mtglifecounter.screens.StartScreen
 import com.example.mtglifecounter.screens.PlayerSelectionScreen
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.mtglifecounter.ui.theme.CounterViewModel
 
 
 enum class Screens(@StringRes title: Int) {
     Start(title = R.string.app_name),
     Commander(title = R.string.commander),
-    Selection(title = R.string.selection)
+    Selection(title = R.string.selection),
+    EndGame(title = R.string.end_game)
 }
-
-
 
 @Composable
 fun MtgLifeCounterApp(
     counterViewModel: CounterViewModel,
     navController: NavHostController = rememberNavController()
 ) {
-    val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentScreen = Screens.valueOf(
-        backStackEntry?.destination?.route ?: Screens.Start.name
-    )
-    Scaffold(
 
-    ){
+    Scaffold {
         innerPadding ->
         NavHost(
             navController = navController,
@@ -62,15 +53,15 @@ fun MtgLifeCounterApp(
             composable(route = Screens.Commander.name) {
                 CommanderScreen(
                     viewModel = counterViewModel,
-                    onButtonClick = { navController.popBackStack(Screens.Start.name, inclusive = false) }
+                    onButtonClick = { navController.navigate(Screens.EndGame.name) }
                 )
+            }
+            composable(route = Screens.EndGame.name) {
+                EndScreen(
+                    viewModel = counterViewModel
+                )
+
             }
         }
     }
-
-
 }
-
-
-
-

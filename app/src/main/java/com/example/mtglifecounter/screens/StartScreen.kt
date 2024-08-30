@@ -6,22 +6,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
 import com.example.mtglifecounter.ui.theme.Greenish
-import com.example.mtglifecounter.ui.theme.Orangish
-import com.example.mtglifecounter.ui.theme.Whitish
 import com.example.mtglifecounter.ui.theme.LightGreenish
-import java.io.File
 
 
 @Composable
