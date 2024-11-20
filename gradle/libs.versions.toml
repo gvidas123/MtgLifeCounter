@@ -10,6 +10,7 @@ lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.8.0"
 composeBom = "2024.04.01"
 navVersion = "2.7.7"
+playServicesBase = "18.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,12 +30,12 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-google-auth = "com.google.android.gms:play-services-auth:21.2.0"
+google-guava-fix = "com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava"
 google-api-client = "com.google.api-client:google-api-client-android:1.34.0"
-google-http-client = "com.google.http-client:google-http-client-gson:1.40.1"
-google-api-client-gson = "com.google.api-client:google-api-client-gson:1.34.0"
-google-drive =  "com.google.api-client:google-api-client:1.34.0"
-
+google-guava = "com.google.guava:guava:32.0.1-jre"
+google-drive = "com.google.apis:google-api-services-drive:v3-rev136-1.25.0"
+google-auth = "com.google.android.gms:play-services-auth:21.2.0"
+google-http-client-gson = "com.google.http-client:google-http-client-gson:1.41.7"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

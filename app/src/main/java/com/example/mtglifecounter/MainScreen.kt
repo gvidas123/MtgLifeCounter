@@ -1,4 +1,9 @@
 package com.example.mtglifecounter
+import android.app.Activity
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -13,6 +18,9 @@ import com.example.mtglifecounter.screens.EndScreen
 import com.example.mtglifecounter.screens.StartScreen
 import com.example.mtglifecounter.screens.PlayerSelectionScreen
 import com.example.mtglifecounter.ui.theme.CounterViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.tasks.Task
 
 
 enum class Screens(@StringRes title: Int) {

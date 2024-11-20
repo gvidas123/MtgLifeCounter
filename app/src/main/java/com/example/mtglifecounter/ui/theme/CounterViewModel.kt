@@ -1,11 +1,7 @@
 package com.example.mtglifecounter.ui.theme
-import kotlinx.coroutines.flow.MutableStateFlow
-import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import java.util.Calendar
 import java.util.Date
+
 
 
 class CounterViewModel {
@@ -20,4 +16,6 @@ class CounterViewModel {
     var player2LIfe: Int = 40
     var player3LIfe: Int = 40
     var player4LIfe: Int = 40
+
 }
+
