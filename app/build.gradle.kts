@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.google.drive)
     implementation(libs.google.auth)
     implementation(libs.google.http.client.gson)
+    implementation(libs.androidx.runtime.livedata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

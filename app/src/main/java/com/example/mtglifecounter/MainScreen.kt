@@ -1,6 +1,7 @@
 package com.example.mtglifecounter
 import android.app.Activity
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,9 +19,7 @@ import com.example.mtglifecounter.screens.EndScreen
 import com.example.mtglifecounter.screens.StartScreen
 import com.example.mtglifecounter.screens.PlayerSelectionScreen
 import com.example.mtglifecounter.ui.theme.CounterViewModel
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.tasks.Task
+import com.example.mtglifecounter.ui.theme.DriveViewModel
 
 
 enum class Screens(@StringRes title: Int) {
@@ -32,7 +31,9 @@ enum class Screens(@StringRes title: Int) {
 
 @Composable
 fun MtgLifeCounterApp(
+    driveViewModel: DriveViewModel,
     counterViewModel: CounterViewModel,
+    activity: ComponentActivity,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -46,11 +47,13 @@ fun MtgLifeCounterApp(
         {
             composable(route = Screens.Start.name) {
                 StartScreen(
-                    onButtonClick = { navController.navigate(Screens.Selection.name)
-
-                    }
+                    driveViewModel,
+                    onButtonClick = { navController.navigate(Screens.Selection.name)},
+                    onSecondClick = {
+                        driveViewModel.checkSignInStatus()
+                    },
+                    activity = activity
                 )
-
             }
             composable(route = Screens.Selection.name) {
                 PlayerSelectionScreen(
