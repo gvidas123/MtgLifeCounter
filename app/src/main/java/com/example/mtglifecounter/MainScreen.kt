@@ -1,15 +1,18 @@
 package com.example.mtglifecounter
 import android.app.Activity
+import android.content.Intent
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -33,10 +36,10 @@ enum class Screens(@StringRes title: Int) {
 fun MtgLifeCounterApp(
     driveViewModel: DriveViewModel,
     counterViewModel: CounterViewModel,
-    activity: ComponentActivity,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    signInLauncher: ActivityResultLauncher<Intent>
 ) {
-
+    val activity = LocalContext.current as ComponentActivity
     Scaffold {
         innerPadding ->
         NavHost(
@@ -49,10 +52,9 @@ fun MtgLifeCounterApp(
                 StartScreen(
                     driveViewModel,
                     onButtonClick = { navController.navigate(Screens.Selection.name)},
-                    onSecondClick = {
-                        driveViewModel.checkSignInStatus()
-                    },
-                    activity = activity
+                    onSecondClick = {},
+                    signInLauncher = signInLauncher
+
                 )
             }
             composable(route = Screens.Selection.name) {
