@@ -34,7 +34,7 @@ import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
 import com.example.mtglifecounter.ui.theme.Greenish
 import com.example.mtglifecounter.ui.theme.LightGreenish
 
-
+// as
 @Composable
 fun StartScreen(
     driveViewModel: DriveViewModel,
