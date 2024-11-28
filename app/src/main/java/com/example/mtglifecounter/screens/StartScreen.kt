@@ -34,7 +34,7 @@ import com.example.mtglifecounter.ui.theme.MtgLifeCounterTheme
 import com.example.mtglifecounter.ui.theme.Greenish
 import com.example.mtglifecounter.ui.theme.LightGreenish
 
-// as
+
 @Composable
 fun StartScreen(
     driveViewModel: DriveViewModel,
@@ -72,7 +72,7 @@ fun StartScreen(
                 modifier = Modifier.
                 fillMaxWidth(),
                 onClick = {
-                    if (account != null) {
+                    if (driveViewModel.currentAccount.value?.email != null) {
                         Log.d("GoogleSignIn", "User is signed in as: ${account!!.email}")
                     } else {
                         Log.d("GoogleSignIn", "No user is currently signed in")
@@ -111,6 +111,8 @@ fun StartScreen(
                     onClick = {
                         val signInIntent = driveViewModel.getSignInIntent(activity)
                         signInLauncher.launch(signInIntent)
+                        driveViewModel.update()
+
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Greenish

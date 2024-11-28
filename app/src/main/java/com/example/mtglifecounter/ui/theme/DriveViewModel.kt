@@ -46,19 +46,13 @@ class DriveViewModel(application: Application) : AndroidViewModel(application) {
         Log.d("GoogleSignIn", "Previous account: ${_currentAccount.value?.email}")
 
         val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-        try {
-            val account = task.getResult(ApiException::class.java)
-            if (account != null) {
-                _currentAccount.value = account
-                Log.d("GoogleSignIn", "Sign-in successful: ${account.email}")
-            } else {
-                Log.d("GoogleSignIn", "Sign-in failed: Account is null")
-            }
-        } catch (e: ApiException) {
-            Log.e("GoogleSignIn", "Sign-in failed: ${e.statusCode}", e)
-        }
+        val account = task.getResult(ApiException::class.java)
+        _currentAccount.value = account
+        Log.d("GoogleSignIn", "Sign-in successful: ${account.email}")
         Log.d("GoogleSignIn", "Updated account: ${_currentAccount.value?.email}")
+
     }
+
     fun getCurrentSignedInAccount(activity: Activity): GoogleSignInAccount? {
         return GoogleSignIn.getLastSignedInAccount(activity)
     }
@@ -67,18 +61,24 @@ class DriveViewModel(application: Application) : AndroidViewModel(application) {
         val googleSignInClient = getGoogleSignInClient(activity)
         googleSignInClient.signOut().addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                _currentAccount.value = null // Clear the LiveData after successfully signing out
+                _currentAccount.value = null
                 Log.d("GoogleSignIn", "User signed out successfully")
             } else {
                 Log.e("GoogleSignIn", "Sign-out failed", task.exception)
             }
         }
     }
-
+    fun update() {
+        val account = GoogleSignIn.getLastSignedInAccount(getApplication<Application>())
+        if (account != null) {
+            _currentAccount.value = account // Set the current account if already signed in
+            Log.d("GoogleSignIn", "User already signed in: ${account.email}")
+        }
+    }
 
 
     // Initializer to check if user is already signed in
-    init {
+   init {
         val account = GoogleSignIn.getLastSignedInAccount(getApplication<Application>())
         if (account != null) {
             _currentAccount.value = account // Set the current account if already signed in
